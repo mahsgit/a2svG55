@@ -1,22 +1,15 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-            @cache
-            def powaa(n):
-                if n==0:
-                    return 1
-                elif n==1:
-                    return x
-                num=powaa(n-n//2)*powaa(n//2)
-                return num
-                #   return num*=x
-        
-            
-            # if n==0 :
-            #     return 1
-            # elif  x==0:
-            #     return 0
-            if n>=0:
-                return powaa(abs(n))
-            else:
-               return 1/powaa(abs(n))
+      def helper(n):
+          if n==1:return x
+          if n==0 : return 1
+          if x==0: return 0
+
+
+          ans=helper(n//2)
+          return ans*ans if n%2==0 else x*ans*ans
+
+
+      res=helper(abs(n))
+      return res if n>0 else 1/res
      
